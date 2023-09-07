@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: linear-gradient(135deg, #C33764 10%, #1D2671 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+h1{
+    color: #ffffff;
+}
+section{
+    display: grid;
+    grid-template-columns: repeat(4,8.5rem);
+    grid-template-rows: repeat(4,8.5rem);
+    grid-gap: 2rem;
+    perspective: 850px;
+    
+}
+.card{                        /*by making the positions relative and absolute we could stack one above other*/
+                            /*additionally by using z-index we can overstack the images like giving higher z-index for face,face could be on top*/
+    position: relative;
+    transform-style:preserve-3d; /*when preserve 3-d is used remember to use perspective in parent element*/
+    transition: all 2s cubic-bezier(0.175,0.885,0.32,1.275);
+    box-shadow: rgba(0,0,0,0.2) 0px 5px 15px; /*first color black with opacity the style in x-axis,y-axis(if +ve value gn moves upward),blur*/
+
+}
+.face,.back{
+    width: 100%; /*by making width and height as 100% we can ensure that they fill their parent containers*/
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
+}
+.back{
+    background-image:url(images/card.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    backface-visibility: hidden;
+}
+.togglecard{
+    transform: rotateY(180deg);
+}
+.face{
+    transform: rotateY(-180deg);
+}
